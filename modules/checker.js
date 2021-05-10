@@ -85,7 +85,7 @@ module.exports = class Checker {
         for(let session of center.sessions) {
           /* If vaccine available, add data to availability list */
           if(session.available_capacity > 0) {
-            availability.push(`${center.name} | ${center.address} | ${session.date} | ${session.vaccine} | ${session.min_age_limit}`);
+            availability.push(`${center.name} | ${center.address} | ${session.date} | ${session.vaccine} | Age : ${session.min_age_limit} | Available : ${session.available_capacity}`);
           }
         }
       }
