@@ -16,9 +16,21 @@ module.exports = class Checker {
       let subscriptions = user.getUserData().subscriptions; // get the user's subscriptions
       /* Loop through the user's subscriptions */
       for(let subscription of subscriptions) {
+        let date = new Date();
         /* Fetch available centres for all subscriptions */
-        let availableCentres = await this.getAvailableCenters(subscription);
+        let availableCentres = await this.getAvailableCenters(subscription, date);
 
+        /* If any center is available, add it to the user's list of available centers */
+        if(availableCentres) {
+          if(!availablity[user.id]) {
+            availablity[user.id] = [];
+          }
+          availablity[user.id] = availablity[user.id].concat(availableCentres);
+        }
+
+        /* Check available centers for next week as well */
+        let nextWeek = new Date(date.getTime() + (7 * 24 * 60 * 60 * 1000)); 
+        availableCentres = await this.getAvailableCenters(subscription, nextWeek);
         /* If any center is available, add it to the user's list of available centers */
         if(availableCentres) {
           if(!availablity[user.id]) {
@@ -37,9 +49,8 @@ module.exports = class Checker {
   }
 
   /* Returns available centers */
-  getAvailableCenters(subscription) {
+  getAvailableCenters(subscription, date) {
     return new Promise((resolve) => {
-      let date = new Date();
       let url = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/';
       /* if subscribed to pincode, use calenderByPin endpoint */
       if(subscription.pincode) {
