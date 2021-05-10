@@ -1,0 +1,30 @@
+{
+  "name": "cowin_vaccine_availability_bot",
+  "version": "1.0.0",
+  "description": "It is a telegram bot. It checks if vaccine is available for any slots that are subscribed and sends a message in telegram",
+  "main": "index.js",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.53.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkabhowmick/cowin-vaccine-availability-bot.git"
+  },
+  "keywords": [
+    "cowin",
+    "vaccine",
+    "automation",
+    "bot"
+  ],
+  "author": "Arka Bhowmick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arkabhowmick/cowin-vaccine-availability-bot/issues"
+  },
+  "homepage": "https://github.com/arkabhowmick/cowin-vaccine-availability-bot#readme"
+}
